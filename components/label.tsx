@@ -1,6 +1,12 @@
-import { cx } from "@/utils/all";
+import { cx } from "../utils/all";
 
-export default function Label(props) {
+interface LabelProps {
+  children: React.ReactNode;
+  color: "green" | "blue" | "orange" | "purple" | "pink";
+  nomargin?: boolean;
+  pill?: boolean;
+}
+export default function Label(props: LabelProps) {
   const color = {
     green: "text-emerald-700",
     blue: "text-blue-600",
@@ -34,7 +40,7 @@ export default function Label(props) {
       className={cx(
         "inline-block text-xs font-medium tracking-wider uppercase ",
         !margin && " mt-5",
-        color[props.color] || color[pink]
+        color[props.color] || color["pink"]
       )}
     >
       {props.children}
