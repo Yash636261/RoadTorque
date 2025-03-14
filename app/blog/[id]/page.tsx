@@ -1,14 +1,29 @@
-import { Metadata } from 'next';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { blogPosts } from '@/lib/blog-data';
-import { Calendar, Clock, ChevronLeft } from 'lucide-react';
-
+import { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { blogPosts } from "@/lib/blog-data";
+import { Calendar, Clock, ChevronLeft } from "lucide-react";
+import { getblogsbyid } from "@/lib/actions/blogs.action";
+import { formatDate } from "@/lib/utils";
+import CategoryLabel from "@/components/Category";
+import Image from "next/image";
+import Container from "@/components/Container";
 type Props = {
-  params: { id: string }
+  params: { id: string };
 };
+
+interface Blog {
+  _id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  category: string;
+  readTime: string;
+  date: string;
+}
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -17,12 +32,12 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = blogPosts.find(post => post.id === parseInt(params.id));
-  
+  const post = blogPosts.find((post) => post.id === parseInt(params.id));
+
   if (!post) {
     return {
-      title: 'Post Not Found | RoadTorque',
-      description: 'The requested article could not be found.'
+      title: "Post Not Found | RoadTorque",
+      description: "The requested article could not be found.",
     };
   }
 
@@ -33,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: post.seo.metaTitle,
       description: post.seo.metaDescription,
-      type: 'article',
+      type: "article",
       publishedTime: post.date,
       authors: [post.author.name],
       images: [
@@ -46,7 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: post.seo.metaTitle,
       description: post.seo.metaDescription,
       images: [post.image],
@@ -57,39 +72,40 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function BlogPost({ params }: Props) {
-  const post = blogPosts.find(post => post.id === parseInt(params.id));
-  
+export default async function BlogPost({ params }: Props) {
+  // const post = blogPosts.find(post => post.id === parseInt(params.id));
+  const post = await getblogsbyid(params.id);
+  console.log(post);
   if (!post) {
     notFound();
   }
 
   const relatedPosts = post.relatedPosts
-    ? blogPosts.filter(p => post.relatedPosts?.includes(p.id))
+    ? blogPosts.filter((p) => post.relatedPosts?.includes(p.id))
     : [];
 
   // JSON-LD structured data
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
     headline: post.title,
     image: post.image,
     datePublished: post.date,
     author: {
-      '@type': 'Person',
+      "@type": "Person",
       name: post.author.name,
     },
     publisher: {
-      '@type': 'Organization',
-      name: 'RoadTorque',
+      "@type": "Organization",
+      name: "RoadTorque",
       logo: {
-        '@type': 'ImageObject',
-        url: 'https://roadtorque.com/logo.png'
-      }
+        "@type": "ImageObject",
+        url: "https://roadtorque.com/logo.png",
+      },
     },
     description: post.excerpt,
     articleBody: post.content,
-    keywords: post.seo.keywords?.join(', '),
+    keywords: post.seo.keywords?.join(", "),
   };
 
   return (
@@ -98,6 +114,7 @@ export default function BlogPost({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+
       <article className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <div className="mb-8">
@@ -108,65 +125,89 @@ export default function BlogPost({ params }: Props) {
             </Link>
           </Button>
         </div>
-
-        {/* Hero Image */}
-        <div className="relative h-[400px] md:h-[600px] rounded-lg overflow-hidden mb-8">
-          <img
-            src={post.image}
-            alt={post.title}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </div>
-
-        {/* Article Header */}
-        <header className="max-w-3xl mx-auto mb-12">
-          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-            <span className="bg-primary/10 text-primary px-3 py-1 rounded-full">
-              {post.category}
-            </span>
-            <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
-              {post.date}
+        <Container className="!pt-0">
+          <div className="mx-auto max-w-screen-md ">
+            <div className="flex justify-center">
+              <CategoryLabel categories={post.category} />
             </div>
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              {post.readTime}
+
+            <h1 className="text-brand-primary mb-3 mt-2 text-center text-3xl font-semibold tracking-tight dark:text-white lg:text-4xl lg:leading-snug">
+              {post.title}
+            </h1>
+
+            <div className="mt-3 flex justify-center space-x-3 text-gray-500 ">
+              <div className="flex items-center gap-3">
+                <div className="relative h-10 w-10 flex-shrink-0">
+                  <Image
+                    src={post.author.avatar}
+                    alt={post.author.name}
+                    className="rounded-full object-cover"
+                    fill
+                    sizes="40px"
+                  />
+                </div>
+                <div>
+                  <p className="text-gray-800 dark:text-gray-400">
+                    {post.author.name}
+                  </p>
+                  <div className="flex items-center space-x-2 text-sm">
+                    {formatDate(post.date)}
+
+                    <span>· {post.estReadingTime || "5"} min read</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
-          
-          <div className="flex items-center gap-4">
-            <img
-              src={post.author.avatar}
-              alt={post.author.name}
-              className="w-12 h-12 rounded-full"
+        </Container>
+
+        <div className="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">
+          {post.image && (
+            <Image
+              src={post.image}
+              alt={post.title || "Thumbnail"}
+              loading="eager"
+              fill
+              sizes="100vw"
+              className="object-cover"
             />
-            <div>
-              <div className="font-semibold">{post.author.name}</div>
-              <div className="text-sm text-muted-foreground">Author</div>
-            </div>
-          </div>
-        </header>
+          )}
+        </div>
 
         {/* Article Content */}
-        <div className="max-w-3xl mx-auto prose prose-lg dark:prose-invert">
-          {post.content.split('\n\n').map((paragraph, index) => {
-            if (paragraph.startsWith('## ')) {
-              return <h2 key={index} className="text-2xl font-bold mt-8 mb-4">{paragraph.substring(3)}</h2>;
-            }
-            if (paragraph.startsWith('- ')) {
-              return (
-                <ul key={index} className="list-disc list-inside my-4">
-                  {paragraph.split('\n').map((item, itemIndex) => (
-                    <li key={itemIndex} className="mb-2">{item.substring(2)}</li>
-                  ))}
-                </ul>
-              );
-            }
-            return <p key={index} className="mb-6">{paragraph}</p>;
-          })}
-        </div>
+        <Container>
+          <div className="max-w-3xl mx-auto prose prose-lg dark:prose-invert">
+            {post.content
+              .split("\n\n")
+              .map((paragraph: string, index: number) => {
+                if (paragraph.startsWith("## ")) {
+                  return (
+                    <h2 key={index} className="text-2xl font-bold mt-8 mb-4">
+                      {paragraph.substring(3)}
+                    </h2>
+                  );
+                }
+                if (paragraph.startsWith("- ")) {
+                  return (
+                    <ul key={index} className="list-disc list-inside my-4">
+                      {paragraph
+                        .split("\n")
+                        .map((item: string, itemIndex: number) => (
+                          <li key={itemIndex} className="mb-2">
+                            {item.substring(2)}
+                          </li>
+                        ))}
+                    </ul>
+                  );
+                }
+                return (
+                  <p key={index} className="mb-6">
+                    {paragraph}
+                  </p>
+                );
+              })}
+          </div>
+        </Container>
 
         {/* Related Posts */}
         {relatedPosts.length > 0 && (
@@ -187,7 +228,10 @@ export default function BlogPost({ params }: Props) {
                       {relatedPost.category}
                     </div>
                     <CardTitle className="line-clamp-2">
-                      <Link href={`/blog/${relatedPost.id}`} className="hover:text-primary transition-colors">
+                      <Link
+                        href={`/blog/${relatedPost.id}`}
+                        className="hover:text-primary transition-colors"
+                      >
                         {relatedPost.title}
                       </Link>
                     </CardTitle>

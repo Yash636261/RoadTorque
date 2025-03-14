@@ -1,7 +1,7 @@
 "use server";
 
 import connectDB from "@/lib/mongodb";
-import Blog from "@/models/Blog";
+import Blog from "@/lib/models/Blog";
 import { blogPosts } from "@/lib/blog-data";
 
 // Helper function to convert sample data to match MongoDB model format
