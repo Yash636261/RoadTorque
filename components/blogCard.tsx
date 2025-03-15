@@ -2,41 +2,39 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
 
-interface BlogCardProps {
-  post: {
-    title: string;
-    slug: string;
-    excerpt?: string;
-    coverImage: string;
-    category: {
-      title: string;
-      slug: string;
-      color?: string;
-    };
-    author: {
-      name: string;
-      image: string;
-      slug: string;
-    };
-    publishedAt: string;
+interface Blog {
+  _id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  category: string;
+  readTime: string;
+  date: string;
+  author?: {
+    name: string;
+    image: string;
   };
-  showExcerpt?: boolean;
 }
 
-export default function BlogCard({ post, showExcerpt = false }: BlogCardProps) {
+export interface BlogCardProps {
+  post: Blog;
+}
+
+export default function BlogCard({ post }: BlogCardProps) {
   // Default color is blue if not provided
-  const categoryColor = post.category.color || "blue";
+  const categoryColor = "blue";
 
   return (
     <div className="group cursor-pointer">
       <div className="overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105 dark:bg-gray-800">
         <Link
           className="relative block aspect-video"
-          href={`/post/${post.slug}`}
+          href={`/post/${post._id}`}
         >
           <Image
             alt="Thumbnail"
-            src={post.coverImage || "/placeholder.svg"}
+            src={post.image || "/placeholder.svg"}
             fill
             sizes="(max-width: 768px) 30vw, 33vw"
             className="object-cover transition-all"
@@ -48,50 +46,50 @@ export default function BlogCard({ post, showExcerpt = false }: BlogCardProps) {
       <div className="">
         <div>
           <div className="flex gap-3">
-            <Link href={`/category/${post.category.slug}`}>
+            <Link href={`/category/${post.category}`}>
               <span
                 className={`inline-block text-xs font-medium tracking-wider uppercase mt-5 text-${categoryColor}-600`}
               >
-                {post.category.title}
+                {post.category}
               </span>
             </Link>
           </div>
 
           <h2 className="text-lg font-semibold leading-snug tracking-tight mt-2 dark:text-white">
-            <Link href={`/post/${post.slug}`}>
+            <Link href={`/post/${post._id}`}>
               <span className="bg-gradient-to-r from-green-200 to-green-100 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px] dark:from-purple-800 dark:to-purple-900">
                 {post.title}
               </span>
             </Link>
           </h2>
 
-          {showExcerpt && post.excerpt && (
+          {post.excerpt && (
             <div>
               <p className="mt-2 line-clamp-3 text-sm text-gray-500 dark:text-gray-400">
-                <Link href={`/post/${post.slug}`}>{post.excerpt}</Link>
+                <Link href={`/post/${post._id}`}>{post.excerpt}</Link>
               </p>
             </div>
           )}
 
           <div className="mt-3 flex items-center space-x-3 text-gray-500 dark:text-gray-400">
-            <Link href={`/author/${post.author.slug}`}>
-              <div className="flex items-center gap-3">
-                <div className="relative h-5 w-5 flex-shrink-0">
-                  <Image
-                    alt={post.author.name}
-                    src={post.author.image || "/placeholder.svg"}
-                    fill
-                    className="rounded-full object-cover"
-                    sizes="20px"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="truncate text-sm">{post.author.name}</span>
+            {/* <Link href={`/author/${post.author.slug}`}> */}
+            <div className="flex items-center gap-3">
+              <div className="relative h-5 w-5 flex-shrink-0">
+                <Image
+                  alt={post.author?.name || "Author"}
+                  src={post.author?.image || "/placeholder.svg"}
+                  fill
+                  className="rounded-full object-cover"
+                  sizes="20px"
+                  loading="lazy"
+                />
               </div>
-            </Link>
+              <span className="truncate text-sm">{post.author?.name}</span>
+            </div>
+            {/* </Link> */}
             <span className="text-xs text-gray-300 dark:text-gray-600">•</span>
-            <time className="truncate text-sm" dateTime={post.publishedAt}>
-              {formatDate(post.publishedAt)}
+            <time className="truncate text-sm" dateTime={post.date}>
+              {formatDate(post.date)}
             </time>
           </div>
         </div>

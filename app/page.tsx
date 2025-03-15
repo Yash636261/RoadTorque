@@ -2,67 +2,22 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import BlogCard from "@/components/blogCard";
 import LandingFooter from "@/components/LandingFooter";
+import { fetchBlogs } from "./actions";
 
-export default function Home() {
-  const featuredPosts = [
-    {
-      title:
-        "Architectural Engineering Wonders of the modern era for your Inspiration",
-      slug: "architectural-engineering-wonders-of-the-modern-era-for-your-inspiration",
-      excerpt:
-        "Reinvention often comes in spurts, after a long period of silence. Just as modern architecture recently enjoyed a comeback, brand architecture, a field with well-established principles for decades",
-      coverImage: "/placeholder.svg?height=468&width=800",
-      category: {
-        title: "Technology",
-        slug: "technology",
-        color: "blue",
-      },
-      author: {
-        name: "Mario Sanchez",
-        image: "/placeholder.svg?height=100&width=100",
-        slug: "mario-sanchez",
-      },
-      publishedAt: "2022-10-21T15:48:00.000Z",
-    },
-    {
-      title:
-        "Architectural Engineering Wonders of the modern era for your Inspiration",
-      slug: "architectural-engineering-wonders-of-the-modern-era-for-your-inspiration",
-      excerpt:
-        "Reinvention often comes in spurts, after a long period of silence. Just as modern architecture recently enjoyed a comeback, brand architecture, a field with well-established principles for decades",
-      coverImage: "/placeholder.svg?height=468&width=800",
-      category: {
-        title: "Technology",
-        slug: "technology",
-        color: "blue",
-      },
-      author: {
-        name: "Mario Sanchez",
-        image: "/placeholder.svg?height=100&width=100",
-        slug: "mario-sanchez",
-      },
-      publishedAt: "2022-10-21T15:48:00.000Z",
-    },
-    {
-      title:
-        "Architectural Engineering Wonders of the modern era for your Inspiration",
-      slug: "architectural-engineering-wonders-of-the-modern-era-for-your-inspiration",
-      excerpt:
-        "Reinvention often comes in spurts, after a long period of silence. Just as modern architecture recently enjoyed a comeback, brand architecture, a field with well-established principles for decades",
-      coverImage: "/placeholder.svg?height=468&width=800",
-      category: {
-        title: "Technology",
-        slug: "technology",
-        color: "blue",
-      },
-      author: {
-        name: "Mario Sanchez",
-        image: "/placeholder.svg?height=100&width=100",
-        slug: "mario-sanchez",
-      },
-      publishedAt: "2022-10-21T15:48:00.000Z",
-    },
-  ];
+interface Blog {
+  _id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  category: string;
+  readTime: string;
+  date: string;
+}
+
+export default async function Home() {
+  const { blogs: featuredPosts, source, error } = await fetchBlogs();
+  console.log(featuredPosts);
 
   return (
     <>
@@ -92,24 +47,15 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <div className="grid gap-10 md:grid-cols-2 lg:gap-10 ">
-          {featuredPosts.slice(0, 2).map((post, key) => (
-            <BlogCard
-              key={key}
-              post={{
-                ...post,
-                title: "The Future of AI in Healthcare and Medical Research",
-                slug: "future-of-ai-in-healthcare",
-                category: {
-                  title: "Health",
-                  slug: "health",
-                  color: "green",
-                },
-              }}
-            />
-          ))}
-        </div>
+        {featuredPosts && featuredPosts.length > 0 && (
+          <div className="grid gap-10 md:grid-cols-2 lg:gap-10 ">
+            {featuredPosts.slice(0, 2).map((post: Blog, key: number) => (
+              <div key={key}>
+                <BlogCard post={post} />
+              </div>
+            ))}
+          </div>
+        )}
         {/* <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3 ">
         {posts.slice(2, 14).map((post) => (
           <PostList key={post._id} post={post} aspect="square" />

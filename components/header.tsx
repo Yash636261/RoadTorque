@@ -6,6 +6,9 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Car, Moon, Search, Sun } from "lucide-react";
+import { Teko } from "next/font/google";
+
+const teko = Teko({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -59,9 +62,10 @@ export default function Header() {
             </div>
 
             <div className="flex w-full items-center justify-between md:w-auto">
-              <Link href="/" className="flex items-center space-x-2">
-                <Car className="h-8 w-8" />
-                <span className="text-2xl font-bold">RoadTorque</span>
+              <Link href="/" className="flex-center space-x-2">
+                <span className={`text-3xl ${teko.className} font-medium`}>
+                  RoadTorque
+                </span>
               </Link>
 
               <button

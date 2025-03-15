@@ -14,17 +14,6 @@ type Props = {
   params: { id: string };
 };
 
-interface Blog {
-  _id: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  image: string;
-  category: string;
-  readTime: string;
-  date: string;
-}
-
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
     id: post.id.toString(),

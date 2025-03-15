@@ -16,7 +16,7 @@ export default function Footer() {
                 alt="logo"
                 width={30}
                 height={30}
-                src="https://assets.aceternity.com/logo-dark.png"
+                src="/Icons/favicon-32x32.png"
                 className="dark:invert"
               />
               <span className="font-medium text-black dark:text-white">

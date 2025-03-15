@@ -23,23 +23,6 @@ interface Blog {
   date: string;
 }
 
-// Convert sample data to match Blog interface format
-const convertSampleBlogsToModelFormat = () => {
-  return blogPosts.map((post) => ({
-    _id: post.id.toString(),
-    title: post.title,
-    excerpt: post.excerpt,
-    content: post.content,
-    image: post.image,
-    category: post.category,
-    date: post.date,
-    readTime: post.readTime,
-    author: post.author,
-    seo: post.seo,
-    relatedPosts: post.relatedPosts || [],
-  }));
-};
-
 export default async function BlogPage() {
   console.log("Page: Fetching blogs using server action...");
   const { blogs: blogPosts, source, error } = await fetchBlogs();

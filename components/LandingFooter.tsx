@@ -16,10 +16,10 @@ export default function LandingFooter() {
                 alt="logo"
                 width={30}
                 height={30}
-                src="/placeholder.svg?height=30&width=30"
+                src="/Icons/favicon-32x32.png"
               />
               <span className="font-medium text-black dark:text-white">
-                DevStudio
+                RoadTorque
               </span>
             </Link>
           </div>

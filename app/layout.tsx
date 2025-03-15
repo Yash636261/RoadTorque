@@ -4,8 +4,9 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-
+import { Teko } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
+const teko = Teko({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "RoadTorque - Automotive Excellence",

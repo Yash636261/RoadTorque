@@ -32,19 +32,6 @@ export async function fetchBlogs() {
 
     console.log("Server Action: Fetching blogs from database...");
     const blogs = await Blog.find({}).sort({ createdAt: -1 });
-    console.log(`Server Action: Found ${blogs?.length || 0} blogs in database`);
-
-    // If no blogs found in database, return sample data
-    if (!blogs || blogs.length === 0) {
-      console.log(
-        "Server Action: No blogs found in database, returning sample data"
-      );
-      return {
-        blogs: convertSampleBlogsToModelFormat(),
-        source: "sample",
-        error: null,
-      };
-    }
 
     console.log("Server Action: Returning blogs from database");
     return {
@@ -57,8 +44,6 @@ export async function fetchBlogs() {
     // Return sample data as fallback
     console.log("Server Action: Using sample blog data as fallback");
     return {
-      blogs: convertSampleBlogsToModelFormat(),
-      source: "sample-fallback",
       error: error instanceof Error ? error.message : String(error),
     };
   }
