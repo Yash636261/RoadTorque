@@ -67,7 +67,7 @@ export default function BlogCard({ post }: BlogCardProps) {
           {post.excerpt && (
             <div>
               <p className="mt-2 line-clamp-3 text-sm text-gray-500 dark:text-gray-400">
-                <Link href={`/post/${post._id}`}>{post.excerpt}</Link>
+                <Link href={`/blog/${post._id}`}>{post.excerpt}</Link>
               </p>
             </div>
           )}

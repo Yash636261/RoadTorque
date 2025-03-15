@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import BlogCard from "@/components/blogCard";
 import LandingFooter from "@/components/LandingFooter";
 import { fetchBlogs } from "./actions";
+import Hero from "@/components/Hero";
 
 interface Blog {
   _id: string;
@@ -21,32 +22,9 @@ export default async function Home() {
 
   return (
     <>
+      {/* Hero Section */}
+      <Hero blog={featuredPosts?.[1]} />
       <div className="container mx-auto px-4 py-8">
-        {/* Hero Section */}
-        <section className="relative h-[600px] rounded-lg overflow-hidden mb-16">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage:
-                'url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80")',
-            }}
-          >
-            <div className="absolute inset-0 bg-black/50" />
-          </div>
-          <div className="relative h-full flex items-center">
-            <div className="max-w-2xl mx-4 text-white">
-              <h1 className="text-5xl font-bold mb-4">Welcome to RoadTorque</h1>
-              <p className="text-xl mb-8">
-                Your premier destination for automotive excellence. Discover the
-                latest news, reviews, and insights from the world of
-                automobiles.
-              </p>
-              <Button asChild size="lg">
-                <Link href="/blog">Explore Articles</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
         {featuredPosts && featuredPosts.length > 0 && (
           <div className="grid gap-10 md:grid-cols-2 lg:gap-10 ">
             {featuredPosts.slice(0, 2).map((post: Blog, key: number) => (

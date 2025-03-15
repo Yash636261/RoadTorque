@@ -2,11 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-import { Teko } from "next/font/google";
+import { MicrosoftClarity } from "@/components/Integrations/MicrosoftClarity";
 const inter = Inter({ subsets: ["latin"] });
-const teko = Teko({ subsets: ["latin"] });
+
 import { Analytics } from "@vercel/analytics/react";
 export const metadata: Metadata = {
   title: "RoadTorque - Automotive Excellence",
@@ -16,7 +14,7 @@ export const metadata: Metadata = {
     title: "RoadTorque - Automotive Excellence",
     description:
       "Your premier destination for automotive news, reviews, and insights",
-    url: "https://roadtorque.com",
+    url: process.env.NEXT_PUBLIC_APP_URL,
     siteName: "RoadTorque",
     images: [
       {
@@ -40,6 +38,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <MicrosoftClarity />
       </head>
       <body className={inter.className}>
         <ThemeProvider
@@ -48,10 +47,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-grow">{children}</main>
-          </div>
+          <main className="flex-grow">{children}</main>
         </ThemeProvider>
         <Analytics />
       </body>
