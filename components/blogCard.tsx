@@ -30,7 +30,7 @@ export default function BlogCard({ post }: BlogCardProps) {
       <div className="overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105 dark:bg-gray-800">
         <Link
           className="relative block aspect-video"
-          href={`/post/${post._id}`}
+          href={`/blog/${post._id}`}
         >
           <Image
             alt="Thumbnail"
@@ -57,7 +57,7 @@ export default function BlogCard({ post }: BlogCardProps) {
           </div>
 
           <h2 className="text-lg font-semibold leading-snug tracking-tight mt-2 dark:text-white">
-            <Link href={`/post/${post._id}`}>
+            <Link href={`/blog/${post._id}`}>
               <span className="bg-gradient-to-r from-green-200 to-green-100 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px] dark:from-purple-800 dark:to-purple-900">
                 {post.title}
               </span>
