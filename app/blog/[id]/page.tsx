@@ -151,15 +151,15 @@ export default async function BlogPost({ params }: Props) {
           </div>
         </Container>
 
-        <div className="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg">
+        <div className="relative z-0 mx-auto w-full max-w-screen-lg overflow-hidden lg:rounded-lg">
           {post.image && (
             <Image
               src={post.image}
               alt={post.title || "Thumbnail"}
               loading="eager"
-              fill
-              sizes="100vw"
-              className="object-cover"
+              width={1000}
+              height={1000}
+              className="object-contain"
               unoptimized={true}
             />
           )}

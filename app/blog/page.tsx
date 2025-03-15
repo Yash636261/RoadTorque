@@ -7,8 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { blogPosts } from "@/lib/blog-data";
-import { getBaseUrl } from "@/lib/utils";
 import { fetchBlogs } from "../actions";
 import Image from "next/image";
 
