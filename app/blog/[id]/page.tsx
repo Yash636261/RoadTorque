@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = blogPosts.find((post) => post.id === parseInt(params.id));
+  const post = await getblogsbyid(params.id);
 
   if (!post) {
     return {
@@ -132,6 +132,7 @@ export default async function BlogPost({ params }: Props) {
                     alt={post.author.name}
                     className="rounded-full object-cover"
                     fill
+                    unoptimized={true}
                     sizes="40px"
                   />
                 </div>
@@ -159,6 +160,7 @@ export default async function BlogPost({ params }: Props) {
               fill
               sizes="100vw"
               className="object-cover"
+              unoptimized={true}
             />
           )}
         </div>

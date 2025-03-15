@@ -10,6 +10,7 @@ import {
 import { blogPosts } from "@/lib/blog-data";
 import { getBaseUrl } from "@/lib/utils";
 import { fetchBlogs } from "../actions";
+import Image from "next/image";
 
 // Define Blog interface to fix TypeScript errors
 interface Blog {
@@ -73,7 +74,10 @@ export default async function BlogPage() {
         {blogPosts?.map((post: Blog) => (
           <Card key={post._id}>
             <div className="aspect-video relative">
-              <img
+              <Image
+                width={300}
+                height={300}
+                unoptimized={true}
                 src={post.image}
                 alt={post.title}
                 className="absolute inset-0 w-full h-full object-cover rounded-t-lg"

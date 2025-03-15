@@ -1,32 +1,33 @@
-import { MetadataRoute } from 'next';
-import { blogPosts } from '@/lib/blog-data';
+import { MetadataRoute } from "next";
+import { fetchBlogs } from "./actions";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://roadtorque.com';
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://roadtorque.com";
+  const { blogs: blogPosts } = await fetchBlogs();
 
   // Static routes
   const routes = [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
+      changeFrequency: "daily" as const,
       priority: 1,
     },
     {
       url: `${baseUrl}/blog`,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
+      changeFrequency: "daily" as const,
       priority: 0.9,
     },
   ];
 
   // Blog posts
-  const blogRoutes = blogPosts.map((post) => ({
+  const blogRoutes = blogPosts?.map((post) => ({
     url: `${baseUrl}/blog/${post.id}`,
     lastModified: new Date(post.date),
-    changeFrequency: 'weekly' as const,
+    changeFrequency: "daily" as const,
     priority: 0.8,
   }));
 
-  return [...routes, ...blogRoutes];
+  return [...routes, ...(blogRoutes || [])];
 }

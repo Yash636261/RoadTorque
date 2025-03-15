@@ -18,6 +18,7 @@ export default function Footer() {
                 height={30}
                 src="/Icons/favicon-32x32.png"
                 className="dark:invert"
+                unoptimized={true}
               />
               <span className="font-medium text-black dark:text-white">
                 RoadTorque

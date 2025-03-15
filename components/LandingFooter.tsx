@@ -17,6 +17,7 @@ export default function LandingFooter() {
                 width={30}
                 height={30}
                 src="/Icons/favicon-32x32.png"
+                unoptimized={true}
               />
               <span className="font-medium text-black dark:text-white">
                 RoadTorque

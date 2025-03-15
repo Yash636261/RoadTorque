@@ -39,6 +39,7 @@ export default function BlogCard({ post }: BlogCardProps) {
             sizes="(max-width: 768px) 30vw, 33vw"
             className="object-cover transition-all"
             priority
+            unoptimized={true}
           />
         </Link>
       </div>
@@ -82,6 +83,7 @@ export default function BlogCard({ post }: BlogCardProps) {
                   className="rounded-full object-cover"
                   sizes="20px"
                   loading="lazy"
+                  unoptimized={true}
                 />
               </div>
               <span className="truncate text-sm">{post.author?.name}</span>
