@@ -70,7 +70,7 @@ export default async function BlogPage() {
 
       {/* Blog Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {blogPosts.map((post: Blog) => (
+        {blogPosts?.map((post: Blog) => (
           <Card key={post._id}>
             <div className="aspect-video relative">
               <img
