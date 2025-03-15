@@ -7,7 +7,7 @@ import Footer from "@/components/footer";
 import { Teko } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 const teko = Teko({ subsets: ["latin"] });
-
+import { Analytics } from "@vercel/analytics/react";
 export const metadata: Metadata = {
   title: "RoadTorque - Automotive Excellence",
   description:
@@ -53,6 +53,7 @@ export default function RootLayout({
             <main className="flex-grow">{children}</main>
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
