@@ -7,8 +7,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { fetchBlogs } from "../actions";
+import { fetchBlogs } from "../../actions";
 import Image from "next/image";
+import BlogFilters from "@/components/blog-filters";
 
 // Define Blog interface to fix TypeScript errors
 interface Blog {
@@ -32,40 +33,8 @@ export default async function BlogPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Blog Header */}
-      <div className="mb-12 text-center">
-        <h1 className="text-4xl font-bold mb-4">Latest Articles</h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Discover the latest news, reviews, and insights from the automotive
-          world.
-        </p>
-        {source && source !== "database" && (
-          <div className="mt-4 p-2 bg-yellow-100 text-yellow-800 rounded-md inline-block">
-            Note: Showing sample data.{" "}
-            {error ? `Error: ${error}` : "No blogs found in database."}
-          </div>
-        )}
-      </div>
-
-      {/* Category Filter */}
-      <div className="flex flex-wrap gap-2 mb-8 justify-center">
-        {[
-          "All",
-          "Electric Vehicles",
-          "Technology",
-          "Classic Cars",
-          "Reviews",
-        ].map((category) => (
-          <Button
-            key={category}
-            variant={category === "All" ? "default" : "outline"}
-            className="rounded-full"
-          >
-            {category}
-          </Button>
-        ))}
-      </div>
+    <div className="container mx-auto px-4 py-8 space-y-8">
+      <BlogFilters />
 
       {/* Blog Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

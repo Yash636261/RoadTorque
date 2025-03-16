@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "RoadTorque - Automotive Excellence",
   description:
     "Your premier destination for automotive news, reviews, and insights",
+  keywords: ["automotive", "news", "reviews", "insights"],
   openGraph: {
     title: "RoadTorque - Automotive Excellence",
     description:

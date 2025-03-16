@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,15 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const leftmenu = [
     {
@@ -105,38 +114,25 @@ export default function Header() {
                   </Link>
                 </Fragment>
               ))}
-              <div className="flex items-center space-x-4 ml-4">
-                {isSearchOpen ? (
-                  <div className="relative">
-                    <Input
-                      type="search"
-                      placeholder="Search articles..."
-                      className="w-64"
-                      autoFocus
-                      onBlur={() => setIsSearchOpen(false)}
-                    />
-                    <Search className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
-                  </div>
-                ) : (
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => setIsSearchOpen(true)}
-                    className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
-                  >
-                    <Search className="h-5 w-5" />
-                  </Button>
-                )}
-
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
+              <div className="flex items-center space-x-4">
+                <button
+                  className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-700 transition-colors"
+                  aria-label="Search"
                 >
-                  <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                </Button>
+                  <Search className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+                </button>
+                <button
+                  className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-700 transition-colors"
+                  onClick={toggleTheme}
+                  aria-label="Toggle theme"
+                >
+                  {mounted &&
+                    (theme === "dark" ? (
+                      <Sun className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+                    ) : (
+                      <Moon className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+                    ))}
+                </button>
               </div>
             </div>
           </div>

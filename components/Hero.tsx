@@ -35,13 +35,13 @@ export default function Hero({ blog }: { blog: Blog }) {
   };
 
   return (
-    <div className="min-h-screen  p-4 flex items-center justify-center transition-colors duration-300 w-full">
+    <div className=" p-4 flex items-center justify-center transition-colors duration-300 w-full">
       <div className="w-full bg-white dark:bg-black p-8 transition-colors duration-300">
         {/* Header */}
         <header className="flex items-center justify-between mb-16">
           <Link
             href="/"
-            className=" font-bold dark:text-white transition-colors"
+            className=" font-bold dark:text-white transition-colors outline-none"
           >
             <span className={`text-3xl ${teko.className} font-medium`}>
               RoadTorque
@@ -55,14 +55,14 @@ export default function Hero({ blog }: { blog: Blog }) {
               Articles
             </Link>
             <Link
-              href="/radio"
+              href="/blog"
               className="text-sm dark:text-zinc-200 transition-colors"
             >
               Blogs
               {/* <span className="text-zinc-400 dark:text-zinc-500">(8)</span> */}
             </Link>
             <Link
-              href="/podcast"
+              href="/reviews"
               className="text-sm dark:text-zinc-200 transition-colors"
             >
               Reviews
@@ -87,14 +87,11 @@ export default function Hero({ blog }: { blog: Blog }) {
                   <Moon className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
                 ))}
             </button>
-            {/* <button className="px-4 py-2 rounded-full border border-zinc-200 dark:border-zinc-700 dark:text-white transition-colors">
-              Menu
-            </button> */}
           </div>
         </header>
 
         {/* Main Content */}
-        <main className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <main className="grid grid-cols-1 lg:grid-cols-3 gap-8 ">
           <div className="lg:col-span-2">
             <div className="flex items-center justify-between mb-8">
               <h1 className="text-5xl font-bold dark:text-white transition-colors">
@@ -124,12 +121,29 @@ export default function Hero({ blog }: { blog: Blog }) {
                   alt="People wearing hats on a sunny day"
                   width={800}
                   height={500}
+                  unoptimized={true}
+                  loading="eager"
                   className="w-full object-cover aspect-[16/10]"
                 />
-                <div className="absolute bottom-8 right-8 max-w-md bg-white/50 backdrop-blur-md dark:bg-zinc-800/50 p-6 rounded-[20px] transition-colors">
-                  <h2 className="text-2xl font-bold mb-2 dark:text-white text-black transition-colors">
+                <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 md:bottom-8 md:right-8 max-w-md bg-gray-600/50 backdrop-blur-md dark:bg-zinc-800/50 p-6 rounded-[20px] transition-colors">
+                  <h2 className=" text-lg sm:text-xl md:text-2xl font-bold mb-2 text-white transition-colors">
                     {blog.title}
                   </h2>
+                  <div className="ml-auto p-3 rounded-full bg-white w-fit hover:rotate-45 transition-transform duration-400">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 63 63"
+                      fill="none"
+                      className=" h-4 w-4"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M1.08128 61.6791C-0.360427 60.2371 -0.360427 57.8995 1.08128 56.4582L50.1556 7.38353H18.4588C16.4199 7.38353 14.767 5.73066 14.767 3.69177C14.767 1.65288 16.4199 0 18.4588 0H59.0682C60.0473 0 60.9865 0.388965 61.679 1.08132C62.3709 1.7736 62.76 2.71264 62.76 3.69177V44.3013C62.76 46.3402 61.1068 47.993 59.0682 47.993C57.0296 47.993 55.3765 46.3402 55.3765 44.3013V12.6045L6.30218 61.6791C4.86047 63.1203 2.52299 63.1203 1.08128 61.6791Z"
+                        fill="black"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </article>
             </Link>
@@ -160,22 +174,24 @@ export default function Hero({ blog }: { blog: Blog }) {
             </div>
 
             <div className="relative rounded-[24px] overflow-hidden bg-sage-100 dark:bg-zinc-700 transition-colors">
-              <span className="absolute top-4 right-4 bg-white/80 dark:bg-zinc-800/80 px-2 py-1 rounded-full text-sm dark:text-white transition-colors">
-                24
-              </span>
               <Image
-                src="/placeholder.svg?height=400&width=400"
+                src="https://res.cloudinary.com/dt77luabi/image/upload/v1742103670/a-visually-stunning-tilted-gallery-of-mu_5jeN2_GsTtirRblbY4qwvg_ZIU-svXGQS-Fuihrq60TMg_pr2zr9.webp"
                 alt="Featured person"
                 width={400}
                 height={400}
                 className="w-full object-cover aspect-square"
               />
-              <Link
-                href="/blog"
-                className="absolute bottom-4 left-4 bg-white dark:bg-zinc-800 px-4 py-2 rounded-full text-sm dark:text-white transition-colors"
-              >
-                See all Posts →
-              </Link>
+              <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 flex items-center gap-2">
+                <span className=" bg-white/80 dark:bg-zinc-800/80 p-2 hover:bg-white dark:hover:bg-zinc-800 rounded-full text-sm dark:text-white transition-colors">
+                  24
+                </span>
+                <Link
+                  href="/blog"
+                  className=" outline-none bg-white/80 hover:bg-white dark:hover:bg-zinc-800 dark:bg-zinc-800/80 px-4 py-2 rounded-full text-sm dark:text-white transition-colors"
+                >
+                  See all Posts →
+                </Link>
+              </div>
             </div>
           </div>
         </main>
