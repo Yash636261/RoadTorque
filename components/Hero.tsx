@@ -125,7 +125,7 @@ export default function Hero({ blog }: { blog: Blog }) {
                   loading="eager"
                   className="w-full object-cover aspect-[16/10]"
                 />
-                <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 md:bottom-8 md:right-8 max-w-md bg-gray-600/50 backdrop-blur-md dark:bg-zinc-800/50 p-6 rounded-[20px] transition-colors">
+                <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 md:bottom-8 md:right-8 max-w-md bg-black/30 backdrop-blur-md dark:bg-zinc-800/50 p-6 rounded-[20px] transition-colors">
                   <h2 className=" text-lg sm:text-xl md:text-2xl font-bold mb-2 text-white transition-colors">
                     {blog.title}
                   </h2>

@@ -4,6 +4,7 @@ import BlogCard from "@/components/blogCard";
 import LandingFooter from "@/components/LandingFooter";
 import { fetchBlogs } from "./actions";
 import Hero from "@/components/Hero";
+import CategoryGrid from "@/components/category-grid";
 
 interface Blog {
   _id: string;
@@ -24,6 +25,8 @@ export default async function Home() {
     <>
       {/* Hero Section */}
       <Hero blog={featuredPosts?.[1]} />
+
+      {/* Featured Posts */}
       <div className="container mx-auto px-4 py-8">
         {featuredPosts && featuredPosts.length > 0 && (
           <div className="grid gap-10 md:grid-cols-2 lg:gap-10 ">
@@ -34,11 +37,6 @@ export default async function Home() {
             ))}
           </div>
         )}
-        {/* <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3 ">
-        {posts.slice(2, 14).map((post) => (
-          <PostList key={post._id} post={post} aspect="square" />
-        ))}
-      </div> */}
         <div className="mt-10 flex justify-center">
           <Link
             href="/blog"
@@ -47,37 +45,12 @@ export default async function Home() {
             <span>View all Posts</span>
           </Link>
         </div>
-
-        {/* Categories
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold mb-8">Explore Categories</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {[
-            "Supercars",
-            "Electric Vehicles",
-            "Classic Cars",
-            "Car Technology",
-          ].map((category) => (
-            <Card key={category} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="text-center">{category}</CardTitle>
-              </CardHeader>
-              <CardFooter className="justify-center">
-                <Button asChild variant="ghost">
-                  <Link
-                    href={`/category/${category
-                      .toLowerCase()
-                      .replace(" ", "-")}`}
-                  >
-                    Explore
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-      </section> */}
       </div>
+
+      {/* Categories */}
+      <CategoryGrid />
+
+      {/* Footer */}
       <LandingFooter />
     </>
   );
