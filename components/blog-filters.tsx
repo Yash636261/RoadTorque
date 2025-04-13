@@ -3,23 +3,17 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
 
-type FilterOption = {
-  name: string;
+interface category {
+  category: string;
   count: number;
-};
+}
 
-export default function BlogFilters() {
+export default function BlogFilters({
+  categories,
+}: {
+  categories: category[];
+}) {
   const [activeFilter, setActiveFilter] = useState("All");
-
-  const filters: FilterOption[] = [
-    { name: "All", count: 28 },
-    { name: "News", count: 12 },
-    { name: "Automotive", count: 4 },
-    { name: "Electric Vehicles", count: 12 },
-    { name: "Technology", count: 12 },
-    { name: "Classic Cars", count: 12 },
-    { name: "Reviews", count: 12 },
-  ];
 
   return (
     <div className="w-full bg-zinc-950 dark:bg-zinc-950 rounded-3xl text-white light:bg-zinc-100 light:text-zinc-900 p-6 md:p-10 transition-colors duration-300">
@@ -38,20 +32,20 @@ export default function BlogFilters() {
               FILTERS
             </p>
             <div className="flex flex-wrap gap-2">
-              {filters.map((filter) => (
+              {categories.map((filter) => (
                 <button
-                  key={filter.name}
-                  onClick={() => setActiveFilter(filter.name)}
+                  key={filter.category}
+                  onClick={() => setActiveFilter(filter.category)}
                   className={`
-                    px-4 py-2 rounded-full text-sm transition-colors duration-200
+                    px-4 py-2 capitalize rounded-full text-sm transition-colors duration-200
                     ${
-                      activeFilter === filter.name
+                      activeFilter === filter.category
                         ? "bg-white text-zinc-900 dark:bg-white dark:text-zinc-900 light:bg-zinc-900 light:text-white"
                         : "bg-zinc-800 text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 light:bg-zinc-200 light:text-zinc-900 light:hover:bg-zinc-300"
                     }
                   `}
                 >
-                  {filter.name}{" "}
+                  {filter.category}{" "}
                   <span className="opacity-70">• {filter.count}</span>
                 </button>
               ))}
