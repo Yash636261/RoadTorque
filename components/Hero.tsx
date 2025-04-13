@@ -41,7 +41,7 @@ export default function Hero({ blog }: { blog: Blog }) {
         <header className="flex items-center justify-between mb-16">
           <Link
             href="/"
-            className=" font-bold dark:text-white transition-colors outline-none"
+            className=" font-bold dark:text-white transition-colors outline-hidden"
           >
             <span className={`text-3xl ${teko.className} font-medium`}>
               RoadTorque
@@ -123,7 +123,7 @@ export default function Hero({ blog }: { blog: Blog }) {
                   height={500}
                   unoptimized={true}
                   loading="eager"
-                  className="w-full object-cover aspect-[16/10]"
+                  className="w-full object-cover aspect-16/10"
                 />
                 <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 md:bottom-8 md:right-8 max-w-md bg-black/30 backdrop-blur-md dark:bg-zinc-800/50 p-6 rounded-[20px] transition-colors">
                   <h2 className=" text-lg sm:text-xl md:text-2xl font-bold mb-2 text-white transition-colors">
@@ -187,7 +187,7 @@ export default function Hero({ blog }: { blog: Blog }) {
                 </span>
                 <Link
                   href="/blog"
-                  className=" outline-none bg-white/80 hover:bg-white dark:hover:bg-zinc-800 dark:bg-zinc-800/80 px-4 py-2 rounded-full text-sm dark:text-white transition-colors"
+                  className=" outline-hidden bg-white/80 hover:bg-white dark:hover:bg-zinc-800 dark:bg-zinc-800/80 px-4 py-2 rounded-full text-sm dark:text-white transition-colors"
                 >
                   See all Posts →
                 </Link>

@@ -41,7 +41,7 @@ export default async function BlogPage() {
         {blogPosts?.map((post: Blog) => (
           <Link href={`/blog/${post._id}`} key={post._id}>
             <Card className="w-full h-full max-w-md overflow-hidden rounded-xl border bg-card transition-all duration-300 hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
-              <div className="relative aspect-[16/9] w-full overflow-hidden bg-gray-100 dark:bg-slate-800">
+              <div className="relative aspect-16/9 w-full overflow-hidden bg-gray-100 dark:bg-slate-800">
                 {post.image ? (
                   <Image
                     width={300}

@@ -57,7 +57,7 @@ export default function BlogCard({ post }: BlogCardProps) {
 
         <h2 className="text-lg font-semibold leading-snug tracking-tight mt-2 dark:text-white">
           <Link href={`/blog/${post._id}`}>
-            <span className="bg-gradient-to-r from-green-200 to-green-100 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px] dark:from-purple-800 dark:to-purple-900">
+            <span className="bg-linear-to-r from-green-200 to-green-100 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px] dark:from-purple-800 dark:to-purple-900">
               {post.title}
             </span>
           </Link>

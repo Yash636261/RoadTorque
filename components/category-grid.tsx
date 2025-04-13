@@ -29,7 +29,7 @@ const CategoryCard = ({
   return (
     <Link
       href={link}
-      className="block outline-none h-full transition-transform hover:scale-[0.98] focus:outline-none group"
+      className="block outline-hidden h-full transition-transform hover:scale-[0.98] focus:outline-hidden group"
     >
       <div
         className="relative h-full overflow-hidden rounded-xl p-4 md:p-6 flex flex-col"

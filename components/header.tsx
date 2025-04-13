@@ -79,7 +79,7 @@ export default function Header() {
 
               <button
                 aria-label="Toggle Menu"
-                className="ml-auto rounded-md px-2 py-1 text-gray-500 focus:text-blue-500 focus:outline-none dark:text-gray-300 md:hidden"
+                className="ml-auto rounded-md px-2 py-1 text-gray-500 focus:text-blue-500 focus:outline-hidden dark:text-gray-300 md:hidden"
                 onClick={handleToggleMobileMenu}
               >
                 <svg

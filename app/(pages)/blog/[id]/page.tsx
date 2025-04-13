@@ -116,8 +116,8 @@ export default async function BlogPost(props: Props) {
             </Link>
           </Button>
         </div>
-        <Container className="!pt-0">
-          <div className="mx-auto max-w-screen-md ">
+        <Container className="pt-0!">
+          <div className="mx-auto max-w-(--breakpoint-md) ">
             <div className="flex justify-center">
               <CategoryLabel categories={post.category} />
             </div>
@@ -128,7 +128,7 @@ export default async function BlogPost(props: Props) {
 
             <div className="mt-3 flex justify-center space-x-3 text-gray-500 ">
               <div className="flex items-center gap-3">
-                <div className="relative h-10 w-10 flex-shrink-0">
+                <div className="relative h-10 w-10 shrink-0">
                   <Image
                     src={post.author.avatar}
                     alt={post.author.name}
@@ -153,7 +153,7 @@ export default async function BlogPost(props: Props) {
           </div>
         </Container>
 
-        <div className="relative z-0 mx-auto w-full max-w-screen-lg overflow-hidden lg:rounded-lg">
+        <div className="relative z-0 mx-auto w-full max-w-(--breakpoint-lg) overflow-hidden lg:rounded-lg">
           {post.image && (
             <Image
               src={post.image}

@@ -61,7 +61,7 @@ export default function BlogFilters({
               <input
                 type="text"
                 placeholder="I want to read about..."
-                className="w-full md:w-80 bg-zinc-800 dark:bg-zinc-800 light:bg-zinc-200 light:text-zinc-900 rounded-full py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-600 transition-colors"
+                className="w-full md:w-80 bg-zinc-800 dark:bg-zinc-800 light:bg-zinc-200 light:text-zinc-900 rounded-full py-2 pl-10 pr-4 text-sm focus:outline-hidden focus:ring-2 focus:ring-zinc-600 transition-colors"
               />
             </div>
           </div>
