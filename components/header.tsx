@@ -53,10 +53,10 @@ export default function Header() {
   };
 
   return (
-    <header className="border-b">
-      <div className="container mx-auto px-4 py-4">
+    <header className=" max-md:border-b">
+      <div className="container mx-auto">
         <nav>
-          <div className="flex flex-wrap justify-between md:flex-nowrap md:gap-10">
+          <div className="flex bg-gray-100 dark:bg-zinc-950 flex-wrap px-4 py-4 md:w-fit md:mx-auto justify-between md:flex-nowrap md:gap-10 border border-x-gray-500 rounded-b-3xl md:border-b-gray-500">
             <div className="order-1 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row md:justify-end">
               {leftmenu.map((item, index) => (
                 <Fragment key={`${item.label}${index}`}>

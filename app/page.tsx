@@ -5,6 +5,7 @@ import LandingFooter from "@/components/LandingFooter";
 import { fetchBlogs } from "./actions";
 import Hero from "@/components/Hero";
 import CategoryGrid from "@/components/category-grid";
+import NewsletterSection from "@/components/NewletterSection";
 
 interface Blog {
   _id: string;
@@ -49,6 +50,8 @@ export default async function Home() {
 
       {/* Categories */}
       <CategoryGrid />
+
+      <NewsletterSection />
 
       {/* Footer */}
       <LandingFooter />
