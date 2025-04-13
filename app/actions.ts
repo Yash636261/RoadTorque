@@ -33,9 +33,18 @@ export async function fetchBlogs() {
     console.log("Server Action: Fetching blogs from database...");
     const blogs = await Blog.find({}).sort({ createdAt: -1 });
 
+    // Convert MongoDB documents to plain JavaScript objects and ensure _id is a string
+    const serializedBlogs = blogs.map((blog) => {
+      const plainObject = blog.toObject();
+      return {
+        ...plainObject,
+        _id: plainObject._id.toString(),
+      };
+    });
+
     console.log("Server Action: Returning blogs from database");
     return {
-      blogs,
+      blogs: serializedBlogs,
       source: "database",
       error: null,
     };

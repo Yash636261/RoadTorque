@@ -8,9 +8,12 @@ const inter = Inter({ subsets: ["latin"] });
 import { Analytics } from "@vercel/analytics/react";
 export const metadata: Metadata = {
   title: "RoadTorque - Automotive Excellence",
+
   description:
     "Your premier destination for automotive news, reviews, and insights",
+
   keywords: ["automotive", "news", "reviews", "insights"],
+
   openGraph: {
     title: "RoadTorque - Automotive Excellence",
     description:
@@ -27,7 +30,7 @@ export const metadata: Metadata = {
     ],
     locale: "en_US",
     type: "website",
-  },
+  }
 };
 
 export default function RootLayout({

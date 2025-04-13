@@ -11,7 +11,7 @@ import CategoryLabel from "@/components/Category";
 import Image from "next/image";
 import Container from "@/components/Container";
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export async function generateStaticParams() {
@@ -20,7 +20,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const post = await getblogsbyid(params.id);
 
   if (!post) {
@@ -61,7 +62,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function BlogPost({ params }: Props) {
+export default async function BlogPost(props: Props) {
+  const params = await props.params;
   // const post = blogPosts.find(post => post.id === parseInt(params.id));
   const post = await getblogsbyid(params.id);
   console.log(post);
