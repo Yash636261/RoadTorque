@@ -20,7 +20,7 @@ interface Blog {
 
 export default async function Home() {
   const { blogs: featuredPosts, source, error } = await fetchBlogs();
-  console.log(featuredPosts);
+  // console.log(featuredPosts);
 
   return (
     <>

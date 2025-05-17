@@ -66,7 +66,7 @@ export default async function BlogPost(props: Props) {
   const params = await props.params;
   // const post = blogPosts.find(post => post.id === parseInt(params.id));
   const post = await getblogsbyid(params.id);
-  console.log(post);
+  // console.log(post);
   if (!post) {
     notFound();
   }
