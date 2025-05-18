@@ -56,7 +56,7 @@ export default function Header() {
     <header className=" max-md:border-b">
       <div className="container mx-auto">
         <nav>
-          <div className="flex bg-gray-100 dark:bg-zinc-950 flex-wrap px-4 py-4 md:w-fit md:mx-auto justify-between md:flex-nowrap md:gap-10 border border-x-gray-500 rounded-b-3xl md:border-b-gray-500">
+          <div className="flex bg-gray-100 dark:bg-zinc-950 flex-wrap px-4 py-4 md:w-fit md:mx-auto justify-between md:flex-nowrap md:gap-10 md:border border-x-gray-500 rounded-b-3xl md:border-b-gray-500">
             <div className="order-1 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row md:justify-end">
               {leftmenu.map((item, index) => (
                 <Fragment key={`${item.label}${index}`}>
@@ -164,10 +164,10 @@ export default function Header() {
                   variant="ghost"
                   size="icon"
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="text-sm font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
+                  className="text-sm flex items-center justify-center font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
                 >
                   <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <Moon className="h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                   <span className="ml-2">Theme</span>
                 </Button>
               </div>

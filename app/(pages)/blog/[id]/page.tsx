@@ -62,6 +62,119 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
+const renderContent = (content: string) => {
+  // First, handle all bold text formatting
+  const processedContent = content
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.*?)\*/g, "<strong>$1</strong>");
+
+  // Split content into sections by horizontal rule
+  const sections = processedContent
+    .split("---")
+    .map((section) => section.trim());
+
+  return sections.map((section, sectionIndex) => {
+    // Split section into paragraphs
+    const paragraphs = section.split("\n\n").filter((p) => p.trim());
+
+    return (
+      <div key={sectionIndex} className="mb-8">
+        {paragraphs.map((paragraph, index) => {
+          // Handle headings
+          if (paragraph.startsWith("## ")) {
+            return (
+              <h2
+                key={index}
+                className="text-2xl sm:text-3xl font-bold mt-8 mb-4"
+                dangerouslySetInnerHTML={{ __html: paragraph.substring(3) }}
+              />
+            );
+          }
+          if (paragraph.startsWith("### ")) {
+            return (
+              <h3
+                key={index}
+                className="text-xl sm:text-2xl font-bold mt-6 mb-3"
+                dangerouslySetInnerHTML={{ __html: paragraph.substring(4) }}
+              />
+            );
+          }
+
+          // Handle bullet points
+          if (paragraph.startsWith("* ")) {
+            return (
+              <ul key={index} className="list-disc list-inside my-4 space-y-2">
+                {paragraph
+                  .split("\n")
+                  .filter((item) => item.trim())
+                  .map((item, itemIndex) => (
+                    <li
+                      key={itemIndex}
+                      className="text-base sm:text-lg"
+                      dangerouslySetInnerHTML={{ __html: item.substring(2) }}
+                    />
+                  ))}
+              </ul>
+            );
+          }
+
+          // Handle tables
+          if (paragraph.includes("|")) {
+            const rows = paragraph.split("\n").filter((row) => row.trim());
+            const headers = rows[0].split("|").filter((cell) => cell.trim());
+            const data = rows.slice(2); // Skip header separator
+
+            return (
+              <div key={index} className="overflow-x-auto my-6">
+                <table className="min-w-full border-collapse">
+                  <thead>
+                    <tr>
+                      {headers.map((header, headerIndex) => (
+                        <th
+                          key={headerIndex}
+                          className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-left bg-gray-100 dark:bg-gray-800"
+                          dangerouslySetInnerHTML={{ __html: header.trim() }}
+                        />
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.map((row, rowIndex) => {
+                      const cells = row
+                        .split("|")
+                        .filter((cell) => cell.trim());
+                      return (
+                        <tr key={rowIndex}>
+                          {cells.map((cell, cellIndex) => (
+                            <td
+                              key={cellIndex}
+                              className="border border-gray-300 dark:border-gray-700 px-4 py-2"
+                              dangerouslySetInnerHTML={{ __html: cell.trim() }}
+                            />
+                          ))}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            );
+          }
+
+          // Handle regular paragraphs
+          return (
+            <p
+              key={index}
+              className="mb-4 text-base sm:text-lg leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: paragraph }}
+            />
+          );
+        })}
+      </div>
+    );
+  });
+};
+
 export default async function BlogPost(props: Props) {
   const params = await props.params;
   // const post = blogPosts.find(post => post.id === parseInt(params.id));
@@ -170,35 +283,7 @@ export default async function BlogPost(props: Props) {
         {/* Article Content */}
         <Container>
           <div className="max-w-3xl mx-auto prose prose-lg dark:prose-invert">
-            {post.content
-              .split("\n\n")
-              .map((paragraph: string, index: number) => {
-                if (paragraph.startsWith("## ")) {
-                  return (
-                    <h2 key={index} className="text-2xl font-bold mt-8 mb-4">
-                      {paragraph.substring(3)}
-                    </h2>
-                  );
-                }
-                if (paragraph.startsWith("- ")) {
-                  return (
-                    <ul key={index} className="list-disc list-inside my-4">
-                      {paragraph
-                        .split("\n")
-                        .map((item: string, itemIndex: number) => (
-                          <li key={itemIndex} className="mb-2">
-                            {item.substring(2)}
-                          </li>
-                        ))}
-                    </ul>
-                  );
-                }
-                return (
-                  <p key={index} className="mb-6">
-                    {paragraph}
-                  </p>
-                );
-              })}
+            {renderContent(post.content)}
           </div>
         </Container>
 
@@ -210,10 +295,12 @@ export default async function BlogPost(props: Props) {
               {relatedPosts.map((relatedPost) => (
                 <Card key={relatedPost.id}>
                   <div className="aspect-video relative">
-                    <img
+                    <Image
                       src={relatedPost.image}
                       alt={relatedPost.title}
                       className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+                      fill
+                      unoptimized={true}
                     />
                   </div>
                   <CardHeader>
