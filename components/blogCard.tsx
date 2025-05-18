@@ -27,54 +27,62 @@ export default function BlogCard({ post }: BlogCardProps) {
 
   return (
     <div className="group cursor-pointer">
-      <div className="overflow-hidden rounded-md bg-gray-100 transition-all dark:bg-gray-800">
+      <div className="overflow-hidden rounded-lg sm:rounded-xl bg-gray-100 transition-all dark:bg-gray-800">
         <Link
-          className="relative block aspect-video"
+          className="relative block aspect-[16/9] sm:aspect-video"
           href={`/blog/${post._id}`}
         >
           <Image
-            alt="Thumbnail"
+            alt={post.title || "Thumbnail"}
             src={post.image || "/placeholder.svg"}
             fill
-            sizes="(max-width: 768px) 30vw, 33vw"
-            className="object-cover transition-all"
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
             priority
             unoptimized={true}
           />
+          <h2 className="absolute bg-white rounded-tr-xl max-w-[85%] dark:bg-black bottom-0 left-0 text-base sm:text-lg md:text-xl font-semibold leading-snug tracking-tight dark:text-white">
+            <div className="relative p-2">
+              <div className="absolute bg-transparent h-8 w-8 -top-8 -left-0 rounded-bl-xl shadow-[-6px_8px_0_0_white] dark:shadow-[-6px_8px_0_0_black]" />
+              <div className="absolute bg-transparent h-8 w-8 -bottom-0 -right-8 rounded-bl-xl shadow-[-6px_8px_0_0_white] dark:shadow-[-6px_8px_0_0_black]" />
+              <span className="">{post.title}</span>
+            </div>
+          </h2>
         </Link>
       </div>
 
-      <div>
-        <div className="flex gap-3">
+      <div className="mt-3 sm:mt-4">
+        <div className="flex gap-2 sm:gap-3">
           <Link href={`/category/${post.category}`}>
             <span
-              className={`inline-block text-xs font-medium tracking-wider uppercase mt-5 text-${categoryColor}-600`}
+              className={`inline-block text-xs sm:text-sm font-medium tracking-wider uppercase text-${categoryColor}-600 hover:text-${categoryColor}-700 dark:text-${categoryColor}-400 dark:hover:text-${categoryColor}-300 transition-colors`}
             >
               {post.category}
             </span>
           </Link>
         </div>
 
-        <h2 className="text-lg font-semibold leading-snug tracking-tight mt-2 dark:text-white">
-          <Link href={`/blog/${post._id}`}>
-            <span className="bg-linear-to-r from-green-200 to-green-100 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px] dark:from-purple-800 dark:to-purple-900">
-              {post.title}
-            </span>
-          </Link>
-        </h2>
-
-        <div className="mt-2 flex items-center space-x-3 text-gray-500 dark:text-gray-400">
-          <span className="truncate text-sm">{post.author?.name}</span>
-          <span className="text-xs text-gray-300 dark:text-gray-600">•</span>
-          <time className="truncate text-sm" dateTime={post.date}>
+        <div className="mt-2 sm:mt-3 flex items-center space-x-2 sm:space-x-3 text-gray-500 dark:text-gray-400">
+          {post.author?.name && (
+            <>
+              <span className="truncate text-xs sm:text-sm">
+                {post.author.name}
+              </span>
+              <span className="text-xs text-gray-300 dark:text-gray-600">
+                •
+              </span>
+            </>
+          )}
+          <time className="truncate text-xs sm:text-sm" dateTime={post.date}>
             {formatDate(post.date)}
           </time>
         </div>
-        <button className="dark:bg-white dark:text-black text-white bg-zinc-900 px-6 py-3 rounded-full mt-4 flex-center gap-4 group">
-          Read More{" "}
+
+        <button className="w-full sm:w-auto dark:bg-white dark:text-black text-white bg-zinc-900 px-4 sm:px-6 py-2 sm:py-3 rounded-full mt-3 sm:mt-4 flex items-center justify-center gap-2 sm:gap-4 group hover:bg-zinc-800 dark:hover:bg-gray-100 transition-colors">
+          <span className="text-sm sm:text-base">Read More</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
+            className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-300"
             viewBox="0 0 97 79"
             fill="none"
           >
@@ -88,12 +96,12 @@ export default function BlogCard({ post }: BlogCardProps) {
         </button>
 
         {/* {post.excerpt && (
-            <div>
-              <p className="mt-2 line-clamp-3 text-sm text-gray-500 dark:text-gray-400">
-                <Link href={`/blog/${post._id}`}>{post.excerpt}</Link>
-              </p>
-            </div>
-          )} */}
+          <div className="mt-2 sm:mt-3">
+            <p className="line-clamp-2 sm:line-clamp-3 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+              <Link href={`/blog/${post._id}`}>{post.excerpt}</Link>
+            </p>
+          </div>
+        )} */}
       </div>
     </div>
   );

@@ -25,13 +25,13 @@ export default async function Home() {
   return (
     <>
       {/* Hero Section */}
-      <Hero blog={featuredPosts?.[1]} />
+      <Hero blog={featuredPosts?.[0]} />
 
       {/* Featured Posts */}
       <div className="container mx-auto px-4 py-8">
         {featuredPosts && featuredPosts.length > 0 && (
           <div className="grid gap-10 md:grid-cols-2 lg:gap-10 ">
-            {featuredPosts.slice(0, 2).map((post: Blog, key: number) => (
+            {featuredPosts.slice(0, 4).map((post: Blog, key: number) => (
               <div key={key}>
                 <BlogCard post={post} />
               </div>

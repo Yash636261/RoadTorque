@@ -47,7 +47,7 @@ export default function NewsletterSection() {
   };
 
   return (
-    <section className="w-full max-w-4xl mx-auto  py-12 px-4 md:px-6">
+    <section className="w-full min-h-screen flex justify-center items-center max-w-4xl mx-auto  py-12 px-4 md:px-6">
       <div className="bg-gradient-to-b from-background to-muted rounded-3xl p-8 sm:p-12 shadow-sm">
         <div className="flex flex-col items-center text-center">
           {/* Icon */}
