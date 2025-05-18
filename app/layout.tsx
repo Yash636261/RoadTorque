@@ -6,6 +6,7 @@ import { MicrosoftClarity } from "@/components/Integrations/MicrosoftClarity";
 const inter = Inter({ subsets: ["latin"] });
 
 import { Analytics } from "@vercel/analytics/react";
+import AdSense from "@/components/ads/AdSense";
 export const metadata: Metadata = {
   title: "RoadTorque - Automotive Excellence",
 
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     ],
     locale: "en_US",
     type: "website",
-  }
+  },
 };
 
 export default function RootLayout({
@@ -43,6 +44,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <MicrosoftClarity />
+        <AdSense />
       </head>
       <body className={inter.className}>
         <ThemeProvider
