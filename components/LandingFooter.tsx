@@ -31,7 +31,7 @@ export default function LandingFooter() {
         </div>
 
         {/* Footer Links */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 items-start mt-10 sm:mt-0 md:mt-0">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-10 items-start mt-10 sm:mt-0 md:mt-0">
           {/* Pages Column */}
           <div className="flex justify-center space-y-4 flex-col w-full">
             <p className="transition-colors hover:text-text-neutral-800 text-neutral-600 dark:text-neutral-300 font-bold">
@@ -41,41 +41,33 @@ export default function LandingFooter() {
               <li className="list-none">
                 <Link
                   className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
-                >
-                  All Products
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link
-                  className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
-                >
-                  Studio
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link
-                  className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
-                >
-                  Clients
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link
-                  className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
-                >
-                  Pricing
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link
-                  className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
+                  href="/blog"
                 >
                   Blog
+                </Link>
+              </li>
+              <li className="list-none">
+                <Link
+                  className="transition-colors hover:text-text-neutral-800"
+                  href="/reviews"
+                >
+                  Reviews
+                </Link>
+              </li>
+              <li className="list-none">
+                <Link
+                  className="transition-colors hover:text-text-neutral-800"
+                  href="/about"
+                >
+                  About
+                </Link>
+              </li>
+              <li className="list-none">
+                <Link
+                  className="transition-colors hover:text-text-neutral-800"
+                  href="/news"
+                >
+                  News
                 </Link>
               </li>
             </ul>
@@ -90,31 +82,15 @@ export default function LandingFooter() {
               <li className="list-none">
                 <Link
                   className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
+                  href="https://github.com/Yash636261"
                 >
-                  Facebook
+                  Github
                 </Link>
               </li>
               <li className="list-none">
                 <Link
                   className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
-                >
-                  Instagram
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link
-                  className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
-                >
-                  Twitter
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link
-                  className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
+                  href="https://www.linkedin.com/in/yash-suthar-22339124a"
                 >
                   LinkedIn
                 </Link>
@@ -131,7 +107,7 @@ export default function LandingFooter() {
               <li className="list-none">
                 <Link
                   className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
+                  href="/privacy-policy"
                 >
                   Privacy Policy
                 </Link>
@@ -139,50 +115,9 @@ export default function LandingFooter() {
               <li className="list-none">
                 <Link
                   className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
+                  href="/terms-of-service"
                 >
                   Terms of Service
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link
-                  className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
-                >
-                  Cookie Policy
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Register Column */}
-          <div className="flex justify-center space-y-4 flex-col">
-            <p className="transition-colors hover:text-text-neutral-800 text-neutral-600 dark:text-neutral-300 font-bold">
-              Register
-            </p>
-            <ul className="transition-colors hover:text-text-neutral-800 text-neutral-600 dark:text-neutral-300 list-none space-y-4">
-              <li className="list-none">
-                <Link
-                  className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
-                >
-                  Sign Up
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link
-                  className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
-                >
-                  Login
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link
-                  className="transition-colors hover:text-text-neutral-800"
-                  href="/products"
-                >
-                  Forgot Password
                 </Link>
               </li>
             </ul>
