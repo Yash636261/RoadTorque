@@ -122,7 +122,7 @@ const renderContent = (content: string) => {
           if (paragraph.includes("|")) {
             const rows = paragraph.split("\n").filter((row) => row.trim());
             const headers = rows[0].split("|").filter((cell) => cell.trim());
-            const data = rows.slice(2); // Skip header separator
+            const data = rows.slice(1); // Skip header separator
 
             return (
               <div key={index} className="overflow-x-auto my-6">

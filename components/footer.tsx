@@ -30,9 +30,17 @@ export default function Footer() {
             <li className="list-none">
               <Link
                 className="transition-colors hover:text-neutral-800 dark:hover:text-white"
-                href="/products"
+                href="/reviews"
               >
-                Products
+                Reviews
+              </Link>
+            </li>
+            <li className="list-none">
+              <Link
+                className="transition-colors hover:text-neutral-800 dark:hover:text-white"
+                href="/news"
+              >
+                News
               </Link>
             </li>
             <li className="list-none">
@@ -85,20 +93,14 @@ export default function Footer() {
           </p>
 
           <div className="flex gap-4">
-            <Link href="#" aria-label="Twitter">
-              <Twitter className="h-6 w-6 text-neutral-500 dark:text-neutral-300 hover:text-neutral-700 dark:hover:text-white transition-colors" />
-            </Link>
-            <Link href="#" aria-label="LinkedIn">
+            <Link
+              href="https://www.linkedin.com/in/yash-suthar-22339124a"
+              aria-label="LinkedIn"
+            >
               <Linkedin className="h-6 w-6 text-neutral-500 dark:text-neutral-300 hover:text-neutral-700 dark:hover:text-white transition-colors" />
             </Link>
-            <Link href="#" aria-label="GitHub">
+            <Link href="https://github.com/Yash636261" aria-label="GitHub">
               <Github className="h-6 w-6 text-neutral-500 dark:text-neutral-300 hover:text-neutral-700 dark:hover:text-white transition-colors" />
-            </Link>
-            <Link href="#" aria-label="Facebook">
-              <Facebook className="h-6 w-6 text-neutral-500 dark:text-neutral-300 hover:text-neutral-700 dark:hover:text-white transition-colors" />
-            </Link>
-            <Link href="#" aria-label="Instagram">
-              <Instagram className="h-6 w-6 text-neutral-500 dark:text-neutral-300 hover:text-neutral-700 dark:hover:text-white transition-colors" />
             </Link>
           </div>
         </div>
