@@ -32,12 +32,12 @@ export const authOptions: NextAuthOptions = {
         const user = {
           id: "1",
           name: "Yash",
-          username: "yashsuthar",
+          username: process.env.ADMIN_USERNAME,
           role: "admin",
         };
         if (
-          credentials.username === "yashsuthar" &&
-          credentials.password === "password"
+          credentials.username === process.env.ADMIN_USERNAME &&
+          credentials.password === process.env.ADMIN_PASSWORD
         ) {
           return user;
         } else {
