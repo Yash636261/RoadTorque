@@ -18,7 +18,6 @@ export default function BlogFilters({
   return (
     <div className="w-full bg-zinc-950 dark:bg-zinc-950 rounded-3xl text-white light:bg-zinc-100 light:text-zinc-900 p-6 md:p-10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        {/* Header with theme toggle */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
             BLOG
@@ -32,6 +31,20 @@ export default function BlogFilters({
               FILTERS
             </p>
             <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setActiveFilter("All")}
+                className={`
+                    px-4 py-2 capitalize rounded-full text-sm transition-colors duration-200
+                    ${
+                      activeFilter === "All"
+                        ? "bg-white text-zinc-900 dark:bg-white dark:text-zinc-900 light:bg-zinc-900 light:text-white"
+                        : "bg-zinc-800 text-white hover:bg-zinc-700 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 light:bg-zinc-200 light:text-zinc-900 light:hover:bg-zinc-300"
+                    }
+                  `}
+              >
+                All
+                {/* <span className="opacity-70">• </span> */}
+              </button>
               {categories.map((filter) => (
                 <button
                   key={filter.category}

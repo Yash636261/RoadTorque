@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { fetchBlogs } from "../../actions";
 import Image from "next/image";
@@ -8,6 +7,7 @@ import { getallcategories } from "@/lib/actions/blogs.action";
 import { ArrowUpRight } from "lucide-react";
 import { ImageIcon } from "lucide-react";
 import { formatDate } from "@/lib/utils";
+
 // Define Blog interface to fix TypeScript errors
 interface Blog {
   _id: string;
@@ -21,13 +21,10 @@ interface Blog {
 }
 
 export default async function BlogPage() {
-  // console.log("Page: Fetching blogs using server action...");
   const { blogs: blogPosts, source, error } = await fetchBlogs();
 
   const categories = (await getallcategories()) ?? [];
-  // console.log("Page: Categories:", categories);
 
-  // console.log("Page: Data source:", source);
   if (error) {
     console.error("Page: Error:", error);
   }

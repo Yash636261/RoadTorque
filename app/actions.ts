@@ -74,7 +74,16 @@ export async function createBlog(data: any) {
     const blog = await Blog.create(data);
     console.log("Server Action: Blog created successfully with ID:", blog._id);
 
-    return { success: true, blog };
+    // Convert MongoDB document to plain object and serialize _id
+    const serializedBlog = {
+      ...blog.toObject(),
+      _id: blog._id.toString(),
+      date: blog.date.toISOString(),
+      createdAt: blog.createdAt.toISOString(),
+      updatedAt: blog.updatedAt.toISOString(),
+    };
+
+    return { success: true, blog: serializedBlog };
   } catch (error) {
     console.error("Server Action: Failed to create blog:", error);
     return {
