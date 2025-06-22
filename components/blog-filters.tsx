@@ -10,10 +10,26 @@ interface category {
 
 export default function BlogFilters({
   categories,
+  onFilterChange,
+  onSearchChange,
 }: {
   categories: category[];
+  onFilterChange: (filter: string) => void;
+  onSearchChange: (search: string) => void;
 }) {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [search, setSearch] = useState("");
+
+  const handleFilterChange = (filter: string) => {
+    setActiveFilter(filter);
+    onFilterChange(filter);
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearch(value);
+    onSearchChange(value);
+  };
 
   return (
     <div className="w-full bg-zinc-950 dark:bg-zinc-950 rounded-3xl text-white light:bg-zinc-100 light:text-zinc-900 p-6 md:p-10 transition-colors duration-300">
@@ -48,7 +64,7 @@ export default function BlogFilters({
               {categories.map((filter) => (
                 <button
                   key={filter.category}
-                  onClick={() => setActiveFilter(filter.category)}
+                  onClick={() => handleFilterChange(filter.category)}
                   className={`
                     px-4 py-2 capitalize rounded-full text-sm transition-colors duration-200
                     ${
@@ -75,6 +91,8 @@ export default function BlogFilters({
                 type="text"
                 placeholder="I want to read about..."
                 className="w-full md:w-80 bg-zinc-800 dark:bg-zinc-800 light:bg-zinc-200 light:text-zinc-900 rounded-full py-2 pl-10 pr-4 text-sm focus:outline-hidden focus:ring-2 focus:ring-zinc-600 transition-colors"
+                value={search}
+                onChange={handleSearchChange}
               />
             </div>
           </div>

@@ -213,7 +213,7 @@ export default function Hero({ blog }: { blog: Blog }) {
                 Real talk in a corporate world
               </p>
               <Link
-                href="/learn-more"
+                href="/blog"
                 className="text-xs md:text-sm hover:underline dark:text-zinc-300 transition-colors"
               >
                 Learn more
