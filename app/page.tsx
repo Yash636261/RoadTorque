@@ -6,6 +6,7 @@ import { fetchBlogs } from "./actions";
 import Hero from "@/components/Hero";
 import CategoryGrid from "@/components/category-grid";
 import NewsletterSection from "@/components/NewletterSection";
+import FAQ from "@/components/FAQ";
 
 interface Blog {
   _id: string;
@@ -50,6 +51,8 @@ export default async function Home() {
 
       {/* Categories */}
       <CategoryGrid />
+
+      <FAQ />
 
       <NewsletterSection />
 

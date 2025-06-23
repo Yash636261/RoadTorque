@@ -40,8 +40,15 @@ export default function Hero({ blog }: { blog: Blog }) {
   };
 
   return (
-    <div className="md:p-4 p-2 flex items-center justify-center transition-colors duration-300 w-full">
-      <div className="w-full bg-white dark:bg-black p-2 md:p-8 transition-colors duration-300">
+    <div className="md:p-4 p-2 flex items-center justify-center transition-colors duration-300 w-full relative">
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 80, 120, 0.25), transparent 70%), #000000",
+        }}
+      />
+      <div className="w-full p-2 md:p-8 transition-colors duration-300 z-10">
         {/* Header */}
         <header className="flex items-center justify-between mb-8 md:mb-16">
           <button

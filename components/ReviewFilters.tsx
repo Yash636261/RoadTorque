@@ -12,13 +12,13 @@ export default function ReviewFilters() {
   const [activeFilter, setActiveFilter] = useState("All");
 
   const filters: FilterOption[] = [
-    { name: "All", count: 28 },
-    { name: "News", count: 12 },
-    { name: "Automotive", count: 4 },
-    { name: "Electric Vehicles", count: 12 },
-    { name: "Technology", count: 12 },
-    { name: "Classic Cars", count: 12 },
-    { name: "Reviews", count: 12 },
+    { name: "All", count: 0 },
+    // { name: "News", count: 12 },
+    // { name: "Automotive", count: 4 },
+    // { name: "Electric Vehicles", count: 12 },
+    // { name: "Technology", count: 12 },
+    // { name: "Classic Cars", count: 12 },
+    // { name: "Reviews", count: 12 },
   ];
 
   return (
