@@ -79,7 +79,7 @@ export default function Hero({ blog }: { blog: Blog }) {
           </button>
           <Link
             href="/"
-            className="font-bold dark:text-white transition-colors outline-hidden"
+            className="font-bold dark:text-white transition-colors"
           >
             <span
               className={`text-2xl md:text-3xl ${teko.className} font-medium`}
@@ -91,10 +91,10 @@ export default function Hero({ blog }: { blog: Blog }) {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link
-              href="/articles"
+              href="/news"
               className="text-sm dark:text-zinc-200 transition-colors hover:text-zinc-600 dark:hover:text-zinc-400"
             >
-              Articles
+              News
             </Link>
             <Link
               href="/blog"
@@ -114,11 +114,11 @@ export default function Hero({ blog }: { blog: Blog }) {
             <nav className="absolute top-20 h-full left-0 right-0 bg-white dark:bg-black p-4 md:hidden z-50 shadow-lg">
               <div className="flex flex-col space-y-4">
                 <Link
-                  href="/articles"
+                  href="/news"
                   className="text-xl dark:text-zinc-200 font-semibold transition-colors hover:text-zinc-600 dark:hover:text-zinc-400"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Articles
+                  News
                 </Link>
                 <Link
                   href="/blog"
@@ -190,7 +190,6 @@ export default function Hero({ blog }: { blog: Blog }) {
                   alt={blog.title}
                   width={800}
                   height={500}
-                  unoptimized={true}
                   loading="eager"
                   className="w-full object-cover aspect-16/10"
                 />
