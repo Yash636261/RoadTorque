@@ -42,10 +42,25 @@ export default function Hero({ blog }: { blog: Blog }) {
   return (
     <div className="md:p-4 p-2 flex items-center justify-center transition-colors duration-300 w-full relative">
       <div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 hidden dark:block"
         style={{
           background:
             "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 80, 120, 0.25), transparent 70%), #000000",
+        }}
+      />
+      <div
+        className="absolute inset-0 z-0 dark:hidden block"
+        style={{
+          background: "#ffffff",
+          backgroundImage: `
+        radial-gradient(
+          circle at top center,
+          rgba(70, 130, 180, 0.5),
+          transparent 70%
+        )
+      `,
+          filter: "blur(80px)",
+          backgroundRepeat: "no-repeat",
         }}
       />
       <div className="w-full p-2 md:p-8 transition-colors duration-300 z-10">
