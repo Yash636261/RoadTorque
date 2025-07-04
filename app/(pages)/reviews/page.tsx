@@ -1,4 +1,4 @@
-import ReviewFilters from "@/components/ReviewFilters";
+import ReviewFilters from "@/components/filters/ReviewFilters";
 import React from "react";
 
 const page = () => {

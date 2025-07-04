@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { fetchBlogs } from "../../actions";
 import Image from "next/image";
-import BlogFilters from "@/components/blog-filters";
+import BlogFilters from "@/components/filters/blog-filters";
 import { getallcategories } from "@/lib/actions/blogs.action";
 import { ArrowUpRight, AlertCircle } from "lucide-react";
 import { ImageIcon } from "lucide-react";

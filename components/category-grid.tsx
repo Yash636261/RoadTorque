@@ -14,6 +14,10 @@ interface CategoryCardProps {
   date?: string;
 }
 
+// <Link
+//   href={link}
+//   className="block outline-hidden h-full transition-transform hover:scale-[0.98] focus:outline-hidden group"
+// >
 const CategoryCard = ({
   title,
   subtitle,
@@ -27,10 +31,7 @@ const CategoryCard = ({
   date,
 }: CategoryCardProps) => {
   return (
-    <Link
-      href={link}
-      className="block outline-hidden h-full transition-transform hover:scale-[0.98] focus:outline-hidden group"
-    >
+    <div className="block outline-hidden h-full transition-transform hover:scale-[0.98] focus:outline-hidden group">
       <div
         className="relative h-full overflow-hidden rounded-xl p-4 md:p-6 flex flex-col"
         style={{ backgroundColor, color: textColor }}
@@ -87,7 +88,7 @@ const CategoryCard = ({
                 <p className=" text-xs md:text-sm opacity-90">{description}</p>
               )}
             </div>
-            <div className=" p-2 rounded-full bg-white w-fit group-hover:rotate-45 transition-transform duration-400">
+            {/* <div className=" p-2 rounded-full bg-white w-fit group-hover:rotate-45 transition-transform duration-400">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 63 63"
@@ -101,7 +102,7 @@ const CategoryCard = ({
                   fill="currentColor"
                 />
               </svg>
-            </div>
+            </div> */}
           </div>
           {date && (
             <div className="mt-2 md:mt-4 text-xs md:text-sm font-medium">
@@ -110,7 +111,7 @@ const CategoryCard = ({
           )}
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
@@ -177,7 +178,7 @@ export default function CategoryGrid() {
         "https://res.cloudinary.com/dt77luabi/image/upload/v1742139815/okl6mbqgktpxzgsjqsn0__1_-removebg-preview_rjyppy.webp",
     },
     {
-      title: "Sports",
+      title: "Sports Cars",
       backgroundColor: "#333333",
       textColor: "#ffffff",
       link: "/popdock-features",

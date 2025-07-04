@@ -1,4 +1,4 @@
-import NewsFilters from "@/components/NewsFilters";
+import NewsFilters from "@/components/filters/NewsFilters";
 import React from "react";
 
 const page = () => {

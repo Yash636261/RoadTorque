@@ -90,11 +90,17 @@ export default function Hero({ blog }: { blog: Blog }) {
           {/* Mobile Menu Button */}
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link
+            {/* <Link
               href="/news"
               className="text-sm dark:text-zinc-200 transition-colors hover:text-zinc-600 dark:hover:text-zinc-400"
             >
               News
+            </Link> */}
+            <Link
+              href="/gallary"
+              className="text-sm dark:text-zinc-200 transition-colors hover:text-zinc-600 dark:hover:text-zinc-400"
+            >
+              Gallary
             </Link>
             <Link
               href="/blog"

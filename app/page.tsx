@@ -7,6 +7,7 @@ import Hero from "@/components/Hero";
 import CategoryGrid from "@/components/category-grid";
 import NewsletterSection from "@/components/NewletterSection";
 import FAQ from "@/components/FAQ";
+import CtaSection from "@/components/CtaSection";
 
 interface Blog {
   _id: string;
@@ -53,6 +54,8 @@ export default async function Home() {
       <CategoryGrid />
 
       <FAQ />
+
+      <CtaSection />
 
       <NewsletterSection />
 

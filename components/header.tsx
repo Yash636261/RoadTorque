@@ -4,7 +4,6 @@ import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Car, Moon, Search, Sun } from "lucide-react";
 import { Teko } from "next/font/google";
 
@@ -30,19 +29,19 @@ export default function Header() {
       href: "/blog",
     },
     {
-      label: "Reviews",
-      href: "/reviews",
+      label: "Gallary",
+      href: "/gallary",
     },
   ];
 
   const rightmenu = [
     {
-      label: "News",
-      href: "/news",
-    },
-    {
       label: "About",
       href: "/about",
+    },
+    {
+      label: "Contact",
+      href: "/contact",
     },
   ];
 
@@ -115,12 +114,12 @@ export default function Header() {
                 </Fragment>
               ))}
               <div className="flex items-center space-x-4">
-                <button
+                {/* <button
                   className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-700 transition-colors"
                   aria-label="Search"
                 >
                   <Search className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
-                </button>
+                </button> */}
                 <button
                   className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-700 transition-colors"
                   onClick={toggleTheme}

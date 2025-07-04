@@ -74,7 +74,7 @@ export default function LandingFooter() {
           </div>
 
           {/* Socials Column */}
-          <div className="flex justify-center space-y-4 flex-col">
+          {/* <div className="flex justify-center space-y-4 flex-col">
             <p className="transition-colors hover:text-text-neutral-800 text-neutral-600 dark:text-neutral-300 font-bold">
               Socials
             </p>
@@ -96,7 +96,7 @@ export default function LandingFooter() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Legal Column */}
           <div className="flex justify-center space-y-4 flex-col">
