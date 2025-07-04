@@ -46,14 +46,14 @@ export default function LandingFooter() {
                   Blog
                 </Link>
               </li>
-              <li className="list-none">
+              {/* <li className="list-none">
                 <Link
                   className="transition-colors hover:text-text-neutral-800"
-                  href="/reviews"
+                  href="/contact"
                 >
-                  Reviews
+                  Contact
                 </Link>
-              </li>
+              </li> */}
               <li className="list-none">
                 <Link
                   className="transition-colors hover:text-text-neutral-800"
@@ -65,9 +65,9 @@ export default function LandingFooter() {
               <li className="list-none">
                 <Link
                   className="transition-colors hover:text-text-neutral-800"
-                  href="/news"
+                  href="/gallary"
                 >
-                  News
+                  Gallary
                 </Link>
               </li>
             </ul>

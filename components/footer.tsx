@@ -30,17 +30,17 @@ export default function Footer() {
             <li className="list-none">
               <Link
                 className="transition-colors hover:text-neutral-800 dark:hover:text-white"
-                href="/reviews"
+                href="/contact"
               >
-                Reviews
+                Contact
               </Link>
             </li>
             <li className="list-none">
               <Link
                 className="transition-colors hover:text-neutral-800 dark:hover:text-white"
-                href="/news"
+                href="/gallary"
               >
-                News
+                Gallary
               </Link>
             </li>
             <li className="list-none">
@@ -92,7 +92,7 @@ export default function Footer() {
             ©RoadTorque {new Date().getFullYear()}
           </p>
 
-          <div className="flex gap-4">
+          {/* <div className="flex gap-4">
             <Link
               href="https://www.linkedin.com/in/yash-suthar-22339124a"
               aria-label="LinkedIn"
@@ -102,7 +102,7 @@ export default function Footer() {
             <Link href="https://github.com/Yash636261" aria-label="GitHub">
               <Github className="h-6 w-6 text-neutral-500 dark:text-neutral-300 hover:text-neutral-700 dark:hover:text-white transition-colors" />
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
