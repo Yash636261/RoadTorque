@@ -35,54 +35,45 @@ const LoginPage = () => {
           </div>
 
           {/* Login Form */}
-          <div className="space-y-4 mb-6">
-            {/* Email Input */}
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-cyan-500 w-5 h-5" />
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-4 mb-6">
+              {/* Email Input */}
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-cyan-500 w-5 h-5" />
 
-              <input
-                id="username"
-                name="username"
-                type="text"
-                required
-                className="pl-12 pr-12 h-12 w-full border-gray-200 rounded-lg bg-[#1b1b1b] text-white placeholder:text-gray-200"
-                placeholder="Enter Your Username"
-              />
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  required
+                  className="pl-12 pr-12 h-12 w-full border-gray-200 rounded-lg bg-[#1b1b1b] text-white placeholder:text-gray-200"
+                  placeholder="Enter Your Username"
+                />
+              </div>
+
+              {/* Password Input */}
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  className="pl-12 pr-12 h-12 w-full border-gray-200 rounded-lg bg-[#1b1b1b] text-white placeholder:text-gray-200"
+                  placeholder="Enter Your Password"
+                />
+              </div>
             </div>
 
-            {/* Password Input */}
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                className="pl-12 pr-12 h-12 w-full border-gray-200 rounded-lg bg-[#1b1b1b] text-white placeholder:text-gray-200"
-                placeholder="Enter Your Password"
-              />
-              {/* <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              >
-                {showPassword ? (
-                  <EyeOff className="w-5 h-5" />
-                ) : (
-                  <Eye className="w-5 h-5" />
-                )}
-              </button> */}
-            </div>
-          </div>
-
-          {/* Sign Up Button */}
-          <Button
-            type="submit"
-            className="w-full h-12 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg mb-4"
-          >
-            login
-          </Button>
+            {/* Sign Up Button */}
+            <Button
+              type="submit"
+              className="w-full h-12 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg mb-4"
+            >
+              Login
+            </Button>
+          </form>
 
           {/* User Testimonial */}
           <div className="mt-12 flex items-center justify-between p-4 group bg-cyan-200 rounded-2xl border border-gray-100">
