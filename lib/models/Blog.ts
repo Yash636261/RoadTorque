@@ -16,8 +16,8 @@ const BlogSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide content"],
     },
-    image: {
-      type: String,
+    images: {
+      type: [String],
       required: [true, "Please provide an image URL"],
     },
     category: {

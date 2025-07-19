@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import BlogCard from "@/components/blogCard";
 import LandingFooter from "@/components/LandingFooter";
 import { fetchBlogs } from "./actions";
@@ -14,7 +13,7 @@ interface Blog {
   title: string;
   excerpt: string;
   content: string;
-  image: string;
+  images: string[];
   category: string;
   readTime: string;
   date: string;

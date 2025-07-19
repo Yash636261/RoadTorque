@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import { Card } from "@/components/ui/card";
 import { fetchBlogs } from "../../../actions";
 import Image from "next/image";
 import BlogFilters from "@/components/filters/blog-filters";
@@ -17,7 +16,7 @@ interface Blog {
   title: string;
   excerpt: string;
   content: string;
-  image: string;
+  images: string[];
   category: string;
   readTime: string;
   date: string;
@@ -93,12 +92,12 @@ export default function BlogContent() {
     <Link href={`/blog/${post._id}`} key={post._id}>
       <div className="w-full p-4 rounded-3xl border border-[#D5D5D7] dark:border-[#6A8C8D] h-full overflow-hidden transition-all duration-300 hover:shadow-md dark:bg-[#11393B] dark:hover:bg-[#0D2527]">
         <div className="relative rounded-2xl aspect-16/9 w-full overflow-hidden bg-gray-100 dark:bg-[#2e2e2e]">
-          {post.image ? (
+          {post.images[0] ? (
             <Image
               width={300}
               height={300}
               unoptimized={true}
-              src={post.image || "/placeholder.svg"}
+              src={post.images[0] || "/placeholder.svg"}
               alt={post.title}
               className="h-full w-full object-cover transition-transform duration-500 ease-out hover:scale-105"
             />

@@ -7,7 +7,7 @@ interface Blog {
   title: string;
   excerpt: string;
   content: string;
-  image: string;
+  images: string[];
   category: string;
   readTime: string;
   date: string;
@@ -34,7 +34,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         >
           <Image
             alt={post.title || "Thumbnail"}
-            src={post.image || "/placeholder.svg"}
+            src={post.images[0] || "/placeholder.svg"}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             className="object-cover transition-transform duration-500 group-hover:scale-105"

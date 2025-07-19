@@ -43,7 +43,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       authors: [post.author.name],
       images: [
         {
-          url: post.image,
+          url: post.images[0],
           width: 1200,
           height: 630,
           alt: post.title,
@@ -54,7 +54,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: post.seo.metaTitle,
       description: post.seo.metaDescription,
-      images: [post.image],
+      images: [post.images[0]],
     },
     alternates: {
       canonical: post.seo.canonicalUrl,
@@ -193,7 +193,7 @@ export default async function BlogPost(props: Props) {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
-    image: post.image,
+    image: post.images[0],
     datePublished: post.date,
     author: {
       "@type": "Person",
@@ -267,9 +267,9 @@ export default async function BlogPost(props: Props) {
         </Container>
 
         <div className="relative z-0 mx-auto w-full max-w-(--breakpoint-lg) overflow-hidden lg:rounded-lg">
-          {post.image && (
+          {post.images[0] && (
             <Image
-              src={post.image}
+              src={post.images[0]}
               alt={post.title || "Thumbnail"}
               loading="eager"
               width={1000}
@@ -296,7 +296,7 @@ export default async function BlogPost(props: Props) {
                 <Card key={relatedPost.id}>
                   <div className="aspect-video relative">
                     <Image
-                      src={relatedPost.image}
+                      src={relatedPost.images[0]}
                       alt={relatedPost.title}
                       className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
                       fill

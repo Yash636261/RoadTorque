@@ -15,7 +15,7 @@ interface Blog {
   title: string;
   excerpt: string;
   content: string;
-  image: string;
+  images: string[];
   category: string;
   readTime: string;
   date: string;
@@ -192,7 +192,7 @@ export default function Hero({ blog }: { blog: Blog }) {
                   </span>
                 </div>
                 <Image
-                  src={blog.image}
+                  src={blog.images[0]}
                   alt={blog.title}
                   width={800}
                   height={500}

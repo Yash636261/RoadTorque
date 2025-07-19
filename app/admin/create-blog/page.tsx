@@ -12,7 +12,7 @@ import { Loader2 } from "lucide-react";
 export default function CreateBlog() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState<string | null>(null);
+  const [images, setImages] = useState<string[]>([]);
   const [isUploading, setIsUploading] = useState(false);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +44,7 @@ export default function CreateBlog() {
         );
       }
       const data = await response.json();
-      setImage(data.secure_url);
+      setImages([...images, data.secure_url]);
       setIsUploading(false);
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -60,7 +60,7 @@ export default function CreateBlog() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!image) {
+    if (!images.length) {
       alert("Please upload an image before creating the blog post");
       return;
     }
@@ -72,7 +72,7 @@ export default function CreateBlog() {
       title: formData.get("title")?.toString() || "",
       excerpt: formData.get("excerpt")?.toString() || "",
       content: formData.get("content")?.toString() || "",
-      image: image || "",
+      images: images,
       category: formData.get("category")?.toString() || "",
       author: {
         name: formData.get("authorName")?.toString() || "",
@@ -181,23 +181,22 @@ export default function CreateBlog() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2 border border-gray-700 rounded-2xl p-4">
                   <label className="text-sm font-medium text-slate-700 dark:text-slate-200">
-                    Image URL
+                    Images URL
                   </label>
-
-                  {image && (
-                    <div className="rounded-2xl border border-gray-700 h-48 w-full aspect-square relative">
-                      <Image
-                        src={
-                          typeof image === "string"
-                            ? image
-                            : URL.createObjectURL(image)
-                        }
-                        alt="Blog Image"
-                        fill
-                        className="object-cover rounded-2xl"
-                      />
-                    </div>
-                  )}
+                  {images.length > 0 &&
+                    images.map((image, index) => (
+                      <div
+                        key={index}
+                        className="rounded-2xl border border-gray-700 h-48 w-full aspect-square relative mb-4"
+                      >
+                        <Image
+                          src={image}
+                          alt="Blog Image"
+                          fill
+                          className="object-cover rounded-2xl"
+                        />
+                      </div>
+                    ))}
                   {isUploading && (
                     <div className="flex items-center justify-center h-full">
                       <Loader2 className="w-4 h-4 animate-spin" />
@@ -206,12 +205,12 @@ export default function CreateBlog() {
                   {/* <Button type="button" onClick={ImageUpload}>
                     Upload Image
                   </Button> */}
-
                   <Input
                     type="file"
                     accept="image/*"
-                    name="image"
+                    name="images"
                     onChange={handleImageUpload}
+                    multiple
                   />
                 </div>
 
