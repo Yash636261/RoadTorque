@@ -13,7 +13,7 @@ const convertSampleBlogsToModelFormat = () => {
     title: post.title,
     excerpt: post.excerpt,
     content: post.content,
-    image: post.image,
+    images: post.images,
     category: post.category,
     date: post.date,
     readTime: post.readTime,
