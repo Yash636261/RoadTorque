@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { blogPosts } from "@/lib/blog-data";
+// import { blogPosts } from "@/lib/blog-data";
 import { Calendar, Clock, ChevronLeft } from "lucide-react";
 import { getblogsbyid } from "@/lib/actions/blogs.action";
 import { formatDate } from "@/lib/utils";
@@ -13,12 +13,6 @@ import Container from "@/components/Container";
 type Props = {
   params: Promise<{ id: string }>;
 };
-
-export async function generateStaticParams() {
-  return blogPosts.map((post) => ({
-    id: post.id.toString(),
-  }));
-}
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
@@ -184,10 +178,6 @@ export default async function BlogPost(props: Props) {
     notFound();
   }
 
-  const relatedPosts = post.relatedPosts
-    ? blogPosts.filter((p) => post.relatedPosts?.includes(p.id))
-    : [];
-
   // JSON-LD structured data
   const jsonLd = {
     "@context": "https://schema.org",
@@ -288,7 +278,7 @@ export default async function BlogPost(props: Props) {
         </Container>
 
         {/* Related Posts */}
-        {relatedPosts.length > 0 && (
+        {/* {relatedPosts.length > 0 && (
           <div className="max-w-5xl mx-auto mt-16">
             <h2 className="text-2xl font-bold mb-8">Related Articles</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -325,7 +315,7 @@ export default async function BlogPost(props: Props) {
               ))}
             </div>
           </div>
-        )}
+        )} */}
       </article>
     </>
   );

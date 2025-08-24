@@ -1,27 +1,8 @@
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
-
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Blog from "@/lib/models/Blog";
-import { blogPosts } from "@/lib/blog-data";
-
-// Helper function to convert sample data to match MongoDB model format
-const convertSampleBlogsToModelFormat = () => {
-  return blogPosts.map((post) => ({
-    _id: post.id.toString(),
-    title: post.title,
-    excerpt: post.excerpt,
-    content: post.content,
-    images: post.images,
-    category: post.category,
-    date: post.date,
-    readTime: post.readTime,
-    author: post.author,
-    seo: post.seo,
-    relatedPosts: post.relatedPosts || [],
-  }));
-};
 
 export async function GET(request: Request) {
   console.log("API: GET /api/blogs called with URL:", request.url);
@@ -39,12 +20,6 @@ export async function GET(request: Request) {
     // If no blogs found in database, return sample data
     if (!blogs || blogs.length === 0) {
       console.log("API: No blogs found in database, returning sample data");
-      return NextResponse.json(convertSampleBlogsToModelFormat(), {
-        status: 200,
-        headers: {
-          "X-Data-Source": "sample",
-        },
-      });
     }
 
     console.log("API: Returning blogs from database");
@@ -56,15 +31,6 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error("API: MongoDB connection or query failed:", error);
-    // Return sample data as fallback
-    console.log("API: Using sample blog data as fallback");
-    return NextResponse.json(convertSampleBlogsToModelFormat(), {
-      status: 200,
-      headers: {
-        "X-Data-Source": "sample-fallback",
-        "X-Error": "MongoDB connection failed",
-      },
-    });
   }
 }
 

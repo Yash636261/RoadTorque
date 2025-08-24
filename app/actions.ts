@@ -2,24 +2,8 @@
 
 import connectDB from "@/lib/mongodb";
 import Blog from "@/lib/models/Blog";
-import { blogPosts } from "@/lib/blog-data";
 
-// Helper function to convert sample data to match MongoDB model format
-const convertSampleBlogsToModelFormat = () => {
-  return blogPosts.map((post) => ({
-    _id: post.id.toString(),
-    title: post.title,
-    excerpt: post.excerpt,
-    content: post.content,
-    images: post.images,
-    category: post.category,
-    date: post.date,
-    readTime: post.readTime,
-    author: post.author,
-    seo: post.seo,
-    relatedPosts: post.relatedPosts || [],
-  }));
-};
+
 
 export async function fetchBlogs() {
   console.log("Server Action: fetchBlogs called");
